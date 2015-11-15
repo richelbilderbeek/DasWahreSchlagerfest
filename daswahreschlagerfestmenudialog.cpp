@@ -57,7 +57,7 @@ ribi::About ribi::dws::MenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "Das Wahre Schlagerfest",
     "a truely fun game",
-    "the 10th of February 2014",
+    "the 15th of November 2015",
     "2003-2015",
     "http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm",
     GetVersion(),
@@ -85,18 +85,9 @@ ribi::Help ribi::dws::MenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::dws::MenuDialog::GetProgram() const noexcept
-{
-  const boost::shared_ptr<const ribi::Program> p {
-    new ProgramDasWahreSchlagerfest
-  };
-  assert(p);
-  return p;
-}
-
 std::string ribi::dws::MenuDialog::GetVersion() const noexcept
 {
-  return "3.0";
+  return "4.0";
 }
 
 std::vector<std::string> ribi::dws::MenuDialog::GetVersionHistory() const noexcept
@@ -109,7 +100,8 @@ std::vector<std::string> ribi::dws::MenuDialog::GetVersionHistory() const noexce
     "2014-01-30: version 2.3: added command-line demo and play mode",
     "2014-01-31: version 2.4: added terminal-like mode from command-line",
     "2014-02-10: version 2.5: added terminal-like mode in desktop version",
-    "2015-08-28: version 3.0: removed terminal-like mode in desktop version, ported to NDS"
+    "2015-08-28: version 3.0: removed terminal-like mode in desktop version, ported to NDS",
+    "2015-11-15: version 4.0: moved to own GitHub"
   };
 }
 

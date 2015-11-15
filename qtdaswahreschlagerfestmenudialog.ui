@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>310</width>
+    <width>360</width>
     <height>574</height>
    </rect>
   </property>
@@ -293,7 +293,7 @@
    <string>Das Wahre Schlagerfest</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="GameDasWahreSchlagerfest.qrc">
+   <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
@@ -325,7 +325,7 @@ selection-background-color: white
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="GameDasWahreSchlagerfest.qrc">:/images/GameDasWahreSchlagerfestBratwurst.png</pixmap>
+      <pixmap>:/images/DasWahreSchlagerfestBratwurst.png</pixmap>
      </property>
     </widget>
    </item>
@@ -341,7 +341,7 @@ selection-background-color: white
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="GameDasWahreSchlagerfest.qrc">:/images/GameDasWahreSchlagerfestSmiley.png</pixmap>
+      <pixmap>:/images/DasWahreSchlagerfestSmiley.png</pixmap>
      </property>
     </widget>
    </item>
@@ -445,7 +445,7 @@ selection-background-color: white
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="GameDasWahreSchlagerfest.qrc">:/images/GameDasWahreSchlagerfestBeer.png</pixmap>
+      <pixmap>:/images/DasWahreSchlagerfestBeer.png</pixmap>
      </property>
     </widget>
    </item>
@@ -507,8 +507,6 @@ selection-background-color: white
   <tabstop>button_about</tabstop>
   <tabstop>button_quit</tabstop>
  </tabstops>
- <resources>
-  <include location="GameDasWahreSchlagerfest.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -35,12 +35,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
   : QWidget(parent),
-    m_beer(":/images/GameDasWahreSchlagerfestBeer.png"),
-    m_bratwurst(":/images/GameDasWahreSchlagerfestBratwurst.png"),
-    m_empty(":/images/GameDasWahreSchlagerfestSmiley.png"),
+    m_beer(":/images/DasWahreSchlagerfestBeer.png"),
+    m_bratwurst(":/images/DasWahreSchlagerfestBratwurst.png"),
+    m_empty(":/images/DasWahreSchlagerfestSmiley.png"),
     m_image{QtGraphics().CreateImage(1000,600,0)},
     m_keys{},
-    m_richel(":/images/GameDasWahreSchlagerfestRichel.png")
+    m_richel(":/images/DasWahreSchlagerfestRichel.png")
 {
   #ifndef NDEBUG
   Test();

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>DasWahreSchlagerfestRichel.png</file>
+        <file>DasWahreSchlagerfestSecretMessage.png</file>
+        <file>DasWahreSchlagerfestSmiley.png</file>
+        <file>DasWahreSchlagerfestBeer.png</file>
+        <file>DasWahreSchlagerfestBratwurst.png</file>
+        <file>DasWahreSchlagerfestCanvas.png</file>
+    </qresource>
+</RCC>
