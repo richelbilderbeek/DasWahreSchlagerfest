@@ -25,7 +25,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "daswahreschlagerfestterminal.h"
 #include "daswahreschlagerfestwidget.h"
-#include "richelbilderbeekprogram.h"
 #include "testtimer.h"
 #include "trace.h"
 
@@ -57,7 +56,7 @@ ribi::About ribi::dws::MenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "Das Wahre Schlagerfest",
     "a truely fun game",
-    "the 15th of November 2015",
+    "November 28th of 2015",
     "2003-2015",
     "http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm",
     GetVersion(),
@@ -87,7 +86,7 @@ ribi::Help ribi::dws::MenuDialog::GetHelp() const noexcept
 
 std::string ribi::dws::MenuDialog::GetVersion() const noexcept
 {
-  return "4.0";
+  return "4.1";
 }
 
 std::vector<std::string> ribi::dws::MenuDialog::GetVersionHistory() const noexcept
@@ -101,7 +100,8 @@ std::vector<std::string> ribi::dws::MenuDialog::GetVersionHistory() const noexce
     "2014-01-31: version 2.4: added terminal-like mode from command-line",
     "2014-02-10: version 2.5: added terminal-like mode in desktop version",
     "2015-08-28: version 3.0: removed terminal-like mode in desktop version, ported to NDS",
-    "2015-11-15: version 4.0: moved to own GitHub"
+    "2015-11-15: version 4.0: moved to own GitHub",
+    "2015-11-28: version 4.1: added joystick support"
   };
 }
 

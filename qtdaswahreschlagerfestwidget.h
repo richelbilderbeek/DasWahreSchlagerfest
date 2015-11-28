@@ -44,6 +44,7 @@ class QtDwsWidget : public QWidget, public ribi::dws::Display
     
 public:
   explicit QtDwsWidget(QWidget *parent = 0) noexcept;
+  ~QtDwsWidget() noexcept;
 
   void DoDisplay(const Widget& widget) override;
   void OnChanged(const Widget& widget) override;
@@ -53,6 +54,9 @@ protected:
   void keyPressEvent(QKeyEvent *) noexcept;
   void paintEvent(QPaintEvent *) noexcept;
 
+private slots:
+  void OnJoystickCheck();
+
 private:
   const QPixmap m_beer;
   const QPixmap m_bratwurst;
@@ -61,7 +65,8 @@ private:
   //Will be painted
   QImage m_image;
   std::vector<Key> m_keys;
-  const QPixmap m_richel;
+
+  QTimer * const m_timer_joystick;
 
   ///Obtain the pixmap for this tile
   const QPixmap& GetPixmap(const Tile& tile) const noexcept;

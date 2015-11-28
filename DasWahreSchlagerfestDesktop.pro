@@ -4,6 +4,12 @@ include(../RibiLibraries/Boost.pri)
 include(../RibiLibraries/GeneralConsole.pri)
 include(../RibiLibraries/GeneralDesktop.pri)
 
+unix:!macx {
+  # Linux only
+  include(../RibiLibraries/Sfml.pri)
+  DEFINES += USE_SFML_FOR_JOYSTICK_SUPPORT
+}
+
 #Specific
 include(../RibiClasses/CppCanvas/CppCanvas.pri)
 include(../RibiClasses/CppDotMatrix/CppDotMatrix.pri)

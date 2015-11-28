@@ -8,8 +8,7 @@ enum class Tile
 {
   empty,
   beer,
-  bratwurst,
-  richel
+  bratwurst
 };
 
 char ToChar(const Tile& tile);

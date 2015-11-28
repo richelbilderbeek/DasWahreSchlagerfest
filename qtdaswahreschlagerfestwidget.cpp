@@ -26,6 +26,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 #include <QPixmap>
+#include <QTimer>
+
+#ifdef USE_SFML_FOR_JOYSTICK_SUPPORT
+#include <SFML/Window/Joystick.hpp>
+#endif // USE_SFML_FOR_JOYSTICK_SUPPORT
 
 #include "daswahreschlagerfestwidget.h"
 #include "qtgraphics.h"
@@ -40,7 +45,7 @@ ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
     m_empty(":/images/DasWahreSchlagerfestSmiley.png"),
     m_image{QtGraphics().CreateImage(1000,600,0)},
     m_keys{},
-    m_richel(":/images/DasWahreSchlagerfestRichel.png")
+    m_timer_joystick{new QTimer(this)}
 {
   #ifndef NDEBUG
   Test();
@@ -48,8 +53,18 @@ ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
   assert(m_beer.width() == 102);
   assert(m_bratwurst.width() == 102);
   assert(m_empty.width() == 102);
-  assert(m_richel.width() == 102);
 
+  //Timer for checking the joystick input
+  {
+    QObject::connect(m_timer_joystick,SIGNAL(timeout()),this,SLOT(OnJoystickCheck()));
+    m_timer_joystick->setInterval(100);
+    m_timer_joystick->start();
+  }
+}
+
+ribi::dws::QtDwsWidget::~QtDwsWidget() noexcept
+{
+  m_timer_joystick->stop();
 }
 
 void ribi::dws::QtDwsWidget::DoDisplay(const Widget& /* widget */)
@@ -66,7 +81,6 @@ const QPixmap& ribi::dws::QtDwsWidget::GetPixmap(const Tile& tile) const noexcep
     case Tile::beer     : return m_beer;
     case Tile::bratwurst: return m_bratwurst;
     case Tile::empty    : return m_empty;
-    case Tile::richel   : return m_richel;
   }
   assert(!"Should not get here");
   throw std::logic_error("ribi::dws::QtDwsWidget::GetPixmap");
@@ -108,15 +122,12 @@ void ribi::dws::QtDwsWidget::OnChanged(const Widget& widget)
     const std::vector<Tile>& line = v[y];
     assert(cols == static_cast<int>(line.size()));
     const int y1 = static_cast<int>(block_height * static_cast<double>(y  ));
-    //const int y2 = static_cast<int>(block_height * static_cast<double>(y+1));
     for (int x=0; x!=cols; ++x)
     {
       assert(x < static_cast<int>(line.size()));
       const QPixmap& pixmap = GetPixmap(line[x]);
       const int x1 = static_cast<int>(block_width * static_cast<double>(x  ));
-      //const int x2 = static_cast<int>(block_width * static_cast<double>(x+1));
       QtGraphics().DrawImage(m_image,pixmap.toImage(),x1,y1);
-      //painter.drawPixmap(x1,y1,block_width,block_height,pixmap);
     }
   }
   //Draw cursor
@@ -126,11 +137,34 @@ void ribi::dws::QtDwsWidget::OnChanged(const Widget& widget)
     const int y = cursor.y * block_height;
     const QPixmap& pixmap = GetPixmap(cursor.tile);
     QtGraphics().DrawImage(m_image,pixmap.toImage(),x,y);
-    //painter.drawPixmap(x,y,block_width,block_height,pixmap);
-
   }
 
   this->repaint();
+}
+
+void ribi::dws::QtDwsWidget::OnJoystickCheck()
+{
+  #ifdef USE_SFML_FOR_JOYSTICK_SUPPORT
+  sf::Joystick::update();
+  const int joystick_index{0};
+  if (sf::Joystick::isConnected(joystick_index))
+  {
+    if (sf::Joystick::hasAxis(joystick_index, sf::Joystick::X))
+    {
+      const double dx{sf::Joystick::getAxisPosition(joystick_index, sf::Joystick::X)};
+      if (dx < -50.0) { m_keys.push_back(Key::left); }
+      if (dx >  50.0) { m_keys.push_back(Key::right); }
+    }
+    if (sf::Joystick::hasAxis(joystick_index, sf::Joystick::Y))
+    {
+      const double dy{sf::Joystick::getAxisPosition(joystick_index, sf::Joystick::Y)};
+      if (dy > 50.0) { m_keys.push_back(Key::down); }
+    }
+    if (sf::Joystick::isButtonPressed(joystick_index,0)) {
+      close();
+    }
+  }
+  #endif // USE_SFML_FOR_JOYSTICK_SUPPORT
 }
 
 void ribi::dws::QtDwsWidget::paintEvent(QPaintEvent *) noexcept
@@ -164,5 +198,6 @@ void ribi::dws::QtDwsWidget::Test() noexcept
     QtGraphics();
   }
   const TestTimer test_timer(__func__,__FILE__,1.0);
+  QtDwsWidget();
 }
 #endif

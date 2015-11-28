@@ -51,8 +51,13 @@ private slots:
 protected:
   void keyPressEvent(QKeyEvent *);
 
+private slots:
+  void OnJoystickCheck();
+
 private:
   Ui::QtDwsMenuDialog *ui;
+
+  QTimer * const m_timer_joystick;
 
   #ifndef NDEBUG
   static void Test() noexcept;
