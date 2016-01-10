@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Das Wahre Schlagerfest, a simple game
-Copyright (C) 2003-2015 Richel Bilderbeek
+Copyright (C) 2003-2016 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -149,14 +149,7 @@ void ribi::dws::Widget::PressKey(const ribi::dws::Key key)
     {
       if (m_cursor.x + 1 < static_cast<int>(m_v[m_cursor.y].size()))
       {
-        if (m_cursor.tile == Tile::richel)
-        {
-          //Richel eats blocks
-          ++m_cursor.x;
-          m_v[m_cursor.y][m_cursor.x] = Tile::empty;
-          m_display->OnChanged(*this);
-        }
-        else if (m_v[m_cursor.y][m_cursor.x + 1] == Tile::empty)
+        if (m_v[m_cursor.y][m_cursor.x + 1] == Tile::empty)
         {
           ++m_cursor.x;
           m_display->OnChanged(*this);
@@ -168,15 +161,7 @@ void ribi::dws::Widget::PressKey(const ribi::dws::Key key)
     {
       if (m_cursor.y + 1 != static_cast<int>(m_v.size()))
       {
-        if (m_cursor.tile == Tile::richel)
-        {
-          //Richel eats blocks
-          ++m_cursor.y;
-          m_v[m_cursor.y][m_cursor.x] = Tile::empty;
-          m_display->OnChanged(*this);
-          return;
-        }
-        else if (m_v[m_cursor.y+1][m_cursor.x] == Tile::empty)
+        if (m_v[m_cursor.y+1][m_cursor.x] == Tile::empty)
         {
           ++m_cursor.y;
           m_display->OnChanged(*this);
@@ -185,13 +170,9 @@ void ribi::dws::Widget::PressKey(const ribi::dws::Key key)
       }
       if (m_cursor.y + 1 == static_cast<int>(m_v.size()) || m_v[m_cursor.y+1][m_cursor.x] != Tile::empty)
       {
-        //Place non-Richel block
-        if (m_cursor.tile != Tile::richel)
-        {
-          m_v[m_cursor.y][m_cursor.x] = m_cursor.tile;
-          //Check for three in a row
-          CheckThree();
-        }
+        m_v[m_cursor.y][m_cursor.x] = m_cursor.tile;
+        //Check for three in a row
+        CheckThree();
         //Place cursor
         m_cursor.x = static_cast<int>(m_v[0].size()) / 2;
         m_cursor.y = 0;
@@ -201,45 +182,27 @@ void ribi::dws::Widget::PressKey(const ribi::dws::Key key)
           m_cursor.x = std::rand() % static_cast<int>(m_v[0].size());
         }
 
-        if (m_v[m_cursor.y+1][m_cursor.x] != Tile::empty)
-        {
-          assert(!"Impossible since version 2.2");
-          m_cursor.tile = Tile::richel;
-        }
-        else
-        {
-          //New
-          if (std::accumulate(m_v.begin(),m_v.end(),0,
-              [](int& sum, const std::vector<Tile>& w)
-              { return sum + std::count(w.begin(),w.end(),Tile::beer); }
-            ) > 5) { m_cursor.tile = Tile::beer; }
-          else if (std::accumulate(m_v.begin(),m_v.end(),0,
-              [](int& sum, const std::vector<Tile>& w)
-              { return sum + std::count(w.begin(),w.end(),Tile::bratwurst); }
-            ) > 5) { m_cursor.tile = Tile::bratwurst; }
-          else m_cursor.tile = (std::rand() >> 4) % 2 ? Tile::beer : Tile::bratwurst;
-        }
-          m_display->OnChanged(*this);
+        if (std::accumulate(m_v.begin(),m_v.end(),0,
+            [](int& sum, const std::vector<Tile>& w)
+            { return sum + std::count(w.begin(),w.end(),Tile::beer); }
+          ) > 5) { m_cursor.tile = Tile::beer; }
+        else if (std::accumulate(m_v.begin(),m_v.end(),0,
+            [](int& sum, const std::vector<Tile>& w)
+            { return sum + std::count(w.begin(),w.end(),Tile::bratwurst); }
+          ) > 5) { m_cursor.tile = Tile::bratwurst; }
+        else m_cursor.tile = (std::rand() >> 4) % 2 ? Tile::beer : Tile::bratwurst;
+        m_display->OnChanged(*this);
       }
 
     }
     break;
     case Key::left:
     {
-      if (m_cursor.x > 0)
+      if (m_cursor.x > 0
+        && m_v[m_cursor.y][m_cursor.x - 1] == Tile::empty)
       {
-        if (m_cursor.tile == Tile::richel)
-        {
-          //Richel eats blocks
-          --m_cursor.x;
-          m_v[m_cursor.y][m_cursor.x] = Tile::empty;
-          m_display->OnChanged(*this);
-        }
-        else if (m_v[m_cursor.y][m_cursor.x - 1] == Tile::empty)
-        {
-          --m_cursor.x;
-          m_display->OnChanged(*this);
-        }
+        --m_cursor.x;
+        m_display->OnChanged(*this);
       }
     }
     break;

@@ -7,13 +7,13 @@ programmed in C++ using Qt and Wt (see 'About the program' for more details).
 
 # Downloads
 
- * [Download the Windows executable](http://richelbilderbeek.nl/GameDasWahreSchlagerfest.zip)
+ * [Download the Windows executable](http://richelbilderbeek.nl/GameDasWahreSchlagerfestExe.zip)
 
 # About the program
 
 Das Wahre Schlagerfest is programmed in C++14 using the STL, [Boost](http://www.boost.org) and [Qt](http://www.qt.io) libraries.
 
-K3-Op-Een-Rij is cross-compiled using [MXE](http://mxe.cc) in the bash shell scripts.
+Das Wahre Schlagerfest is cross-compiled using [MXE](http://mxe.cc) in the bash shell scripts.
 
 # I want to contribute!
 
@@ -28,6 +28,7 @@ You can collaborate by
 
 The most recent screenshots are at the top.
 
+![Das Wahre Schlagerfest menu v4.1](Screenshots/DasWahreSchlagerfest_4_1_menu.png)
 ![Das Wahre Schlagerfest menu v4.0](Screenshots/DasWahreSchlagerfest_4_0_menu.png)
 ![Das Wahre Schlagerfest v4.0](Screenshots/DasWahreSchlagerfest_4_0.png)
 ![Das Wahre Schlagerfest in terminal v4.0](Screenshots/DasWahreSchlagerfest_4_0_terminal.png)
