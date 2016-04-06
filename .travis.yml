@@ -26,6 +26,7 @@ before_script:
   - ./download_other_githubs.sh
 
 script: 
-  - ./build.sh
+  - ./build_console.sh
+  - ./build_desktop.sh
   - codecov
 
