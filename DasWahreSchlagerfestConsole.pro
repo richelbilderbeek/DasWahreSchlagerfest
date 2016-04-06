@@ -10,3 +10,6 @@ include(../RibiClasses/CppTextCanvas/CppTextCanvas.pri)
 include(DasWahreSchlagerfestConsole.pri)
 
 SOURCES += main.cpp
+
+# Thanks to Qt
+QMAKE_CXXFLAGS += -Wno-unused-variable
