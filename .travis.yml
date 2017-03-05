@@ -1,32 +1,58 @@
-sudo: require
+sudo: true
 language: cpp
 compiler: gcc
+dist: trusty # Qt5, from https://gist.github.com/jreese/6207161#gistcomment-1462109
+
+addons: 
+  apt: 
+    packages: libboost-all-dev
 
 before_install:
+  # Qt5, from https://gist.github.com/jreese/6207161#gistcomment-1462109
+  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+  - sudo apt-get update -qq
+  # C++14
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+  # SFML
   - sudo apt-add-repository -y ppa:sonkun/sfml-development
-  - sudo pip install codecov
   - sudo apt-get update -qq
 
-addons:
-  apt:
-    sources:
-    - boost-latest
-    - ubuntu-toolchain-r-test
-    packages:
-    - gcc-4.8
-    - g++-4.8
-    - libboost1.55-all-dev
-
 install: 
-  - sudo apt-get install -qq g++-5  
+  # C++14
+  - sudo apt-get install -qq g++-5
+  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
+  # Qt5
+  - sudo apt-get install -qq libqt5webkit5-dev qtdeclarative5-dev
+  - export QMAKE=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+  # SFML
   - sudo apt-get install libsfml-dev
+  # Codecov
+  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
+  - sudo pip install codecov
+  # OCLint
+  - ./install_oclint
+  # Others
+  - ./download_other_githubs
 
+
+# Start virtual X server, from https://docs.travis-ci.com/user/gui-and-headless-browsers/
 before_script:
-  - ./download_other_githubs.sh
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
 
 script: 
-  - ./build_console.sh
-  - ./build_desktop.sh
+  # Console
+  - qmake -qt=qt5 DasWahreSchlagerfestConsole.pro
+  - make debug
+  - qmake -qt=qt5  DasWahreSchlagerfestDesktop.pro
+  - make debug
+  # Code coverage
+  - ./get_code_cov
   - codecov
+  # OCLint
+  - ./do_oclint
 
+after_success: 
+  - bash <(curl -s https://codecov.io/bash)
