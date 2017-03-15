@@ -2,7 +2,7 @@ include(../RibiLibraries/GeneralConsole.pri)
 
 #Specific, console
 include(../RibiClasses/CppCanvas/CppCanvas.pri)
-include(../RibiClasses/CppDotMatrix/CppDotMatrix.pri)
+include(../DotMatrix/DotMatrix.pri)
 include(../RibiClasses/CppTextCanvas/CppTextCanvas.pri)
 
 include(DasWahreSchlagerfestConsole.pri)

@@ -9,7 +9,7 @@ unix:!macx {
 
 #Specific
 include(../RibiClasses/CppCanvas/CppCanvas.pri)
-include(../RibiClasses/CppDotMatrix/CppDotMatrix.pri)
+include(../DotMatrix/DotMatrix.pri)
 include(../RibiClasses/CppStopwatch/CppStopwatch.pri)
 include(../RibiClasses/CppTextCanvas/CppTextCanvas.pri)
 include(../RibiClasses/CppQtGraphics/CppQtGraphics.pri)
