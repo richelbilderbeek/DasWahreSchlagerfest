@@ -18,10 +18,12 @@ before_install:
 install: 
   # C++14
   - sudo apt-get install -qq g++-5
-  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
   # Qt5
   - sudo apt-get install -qq libqt5webkit5-dev qtdeclarative5-dev
   - export QMAKE=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+  # cppcheck
+  - sudo apt-get install -qq cppcheck
   # Codecov
   - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
   - sudo pip install codecov
@@ -43,6 +45,8 @@ script:
   - make debug
   - qmake -qt=qt5  DasWahreSchlagerfestDesktop.pro
   - make debug
+  # cppcheck
+  - cppcheck --quiet --error-exitcode=1 . 
   # Code coverage
   - ./get_code_cov
   - codecov
