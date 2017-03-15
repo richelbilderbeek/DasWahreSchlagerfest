@@ -1,12 +1,9 @@
 # Das Wahre Schlagerfest
 
-[![Travis CI logo](TravisCI.png)](https://travis-ci.org)
-![Whitespace](Whitespace.png)
-[![Codecov logo](Codecov.png)](https://www.codecov.io)
-[![gplv3](http://www.gnu.org/graphics/gplv3-88x31.png)](http://www.gnu.org/licenses/gpl.html)
-
-[![Build Status](https://travis-ci.org/richelbilderbeek/DasWahreSchlagerfest.svg?branch=master)](https://travis-ci.org/richelbilderbeek/DasWahreSchlagerfest)
-[![codecov.io](https://codecov.io/github/richelbilderbeek/DasWahreSchlagerfest/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/DasWahreSchlagerfest?branch=master)
+Branch|[![Travis CI logo](TravisCI.png)](https://travis-ci.org)|[![Codecov logo](Codecov.png)](https://www.codecov.io)
+---|---|---
+master|[![Build Status](https://travis-ci.org/richelbilderbeek/DasWahreSchlagerfest.svg?branch=master)](https://travis-ci.org/richelbilderbeek/DasWahreSchlagerfest)|[![codecov.io](https://codecov.io/github/richelbilderbeek/DasWahreSchlagerfest/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/DasWahreSchlagerfest/branch/master)
+develop|[![Build Status](https://travis-ci.org/richelbilderbeek/DasWahreSchlagerfest.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/DasWahreSchlagerfest)|[![codecov.io](https://codecov.io/github/richelbilderbeek/DasWahreSchlagerfest/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/DasWahreSchlagerfest/branch/develop)
 
 Das Wahre Schlagerfest is a Truly Fun Game with an Oktoberfest theme,
 programmed in C++ using Qt (see 'About the program' for more details).
