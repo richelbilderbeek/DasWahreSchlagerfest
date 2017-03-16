@@ -58,10 +58,6 @@ private:
   Ui::QtDwsMenuDialog *ui;
 
   QTimer * const m_timer_joystick;
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 };
 
 } //~namespace dws

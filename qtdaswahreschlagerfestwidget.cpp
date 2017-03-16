@@ -1,23 +1,3 @@
-//---------------------------------------------------------------------------
-/*
-Das Wahre Schlagerfest, a simple game
-Copyright (C) 2003-2016 Richel Bilderbeek
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-*/
-//---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm
-//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtdaswahreschlagerfestwidget.h"
@@ -47,9 +27,6 @@ ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
     m_keys{},
     m_timer_joystick{new QTimer(this)}
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
   assert(m_beer.width() == 102);
   assert(m_bratwurst.width() == 102);
   assert(m_empty.width() == 102);
@@ -185,19 +162,3 @@ ribi::dws::Key ribi::dws::QtDwsWidget::RequestKey()
     return key;
   }
 }
-
-#ifndef NDEBUG
-void ribi::dws::QtDwsWidget::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  {
-    QtGraphics();
-  }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-  QtDwsWidget();
-}
-#endif
