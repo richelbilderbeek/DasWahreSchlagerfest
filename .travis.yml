@@ -47,7 +47,7 @@ script:
   # cppcheck
   - cppcheck --quiet --error-exitcode=1 . 
   # Code coverage
-  - ./get_code_cov
+  - ./get_code_cov >/dev/null
   - codecov
   # OCLint
   - ./do_oclint
