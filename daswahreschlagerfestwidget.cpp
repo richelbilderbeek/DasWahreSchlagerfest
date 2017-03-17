@@ -54,32 +54,34 @@ void ribi::dws::Widget::CheckThree()
   std::vector<std::vector<bool> > w(height,std::vector<bool>(width,false));
   assert(w.size() == m_v.size());
   assert(w[0].size() == m_v[0].size());
-  bool found = false;
-  for (int y=0; y!=height; ++y)
   {
-    for (int x=0; x!=width; ++x)
+    bool has_three = false;
+    for (int y=0; y!=height; ++y)
     {
-      if (m_v[y][x] == Tile::empty) continue;
+      for (int x=0; x!=width; ++x)
+      {
+        if (m_v[y][x] == Tile::empty) continue;
 
-      if (x < width-2 && m_v[y][x] == m_v[y][x+1] && m_v[y][x+1] == m_v[y][x+2])
-      {
-        w[y][x] = true; w[y][x+1] = true; w[y][x+2] = true; found = true;
-      }
-      if (y < height - 2 && m_v[y][x] == m_v[y+1][x] && m_v[y+1][x] == m_v[y+2][x])
-      {
-        w[y][x] = true; w[y+1][x] = true; w[y+2][x] = true; found = true;
-      }
-      if (x < width -2 && y < height -2 && m_v[y][x] == m_v[y+1][x+1] && m_v[y+1][x+1] == m_v[y+2][x+2])
-      {
-        w[y][x] = true; w[y+1][x+1] = true; w[y+2][x+2] = true; found = true;
-      }
-      if (x < width -2 && y > 2 && m_v[y][x] == m_v[y-1][x+1] && m_v[y-1][x+1] == m_v[y-2][x+2])
-      {
-        w[y][x] = true; w[y-1][x+1] = true; w[y-2][x+2] = true; found = true;
+        if (x < width-2 && m_v[y][x] == m_v[y][x+1] && m_v[y][x+1] == m_v[y][x+2])
+        {
+          w[y][x] = true; w[y][x+1] = true; w[y][x+2] = true; has_three = true;
+        }
+        if (y < height - 2 && m_v[y][x] == m_v[y+1][x] && m_v[y+1][x] == m_v[y+2][x])
+        {
+          w[y][x] = true; w[y+1][x] = true; w[y+2][x] = true; has_three = true;
+        }
+        if (x < width -2 && y < height -2 && m_v[y][x] == m_v[y+1][x+1] && m_v[y+1][x+1] == m_v[y+2][x+2])
+        {
+          w[y][x] = true; w[y+1][x+1] = true; w[y+2][x+2] = true; has_three = true;
+        }
+        if (x < width -2 && y > 2 && m_v[y][x] == m_v[y-1][x+1] && m_v[y-1][x+1] == m_v[y-2][x+2])
+        {
+          w[y][x] = true; w[y-1][x+1] = true; w[y-2][x+2] = true; has_three = true;
+        }
       }
     }
+    if (!has_three) return;
   }
-  if (!found) return;
   //Remove the tiles
   for (int y=0; y!=height; ++y)
   {
@@ -91,10 +93,10 @@ void ribi::dws::Widget::CheckThree()
 
   //Make the tiles fall down
   {
-    bool found = true;
-    while (found)
+    bool tile_has_fallen = true;
+    while (tile_has_fallen)
     {
-      found = false;
+      tile_has_fallen = false;
       for (int y=0; y!=height-1; ++y)
       {
         for (int x=0; x!=width; ++x)
@@ -102,7 +104,7 @@ void ribi::dws::Widget::CheckThree()
           if (m_v[y][x] != Tile::empty && m_v[y+1][x] == Tile::empty)
           {
             std::swap(m_v[y][x],m_v[y+1][x]);
-            found = true;
+            tile_has_fallen = true;
           }
         }
       }
