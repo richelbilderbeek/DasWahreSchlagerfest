@@ -19,8 +19,5 @@ HEADERS  += \
     ../DasWahreSchlagerfest/daswahreschlagerfesttile.h \
     ../DasWahreSchlagerfest/daswahreschlagerfestcursor.h
 
-OTHER_FILES += \
-    ../DasWahreSchlagerfest/Licence.txt
-
 RESOURCES += \
     ../DasWahreSchlagerfest/DasWahreSchlagerfest.qrc
