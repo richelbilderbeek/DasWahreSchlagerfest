@@ -49,3 +49,7 @@ The most recent screenshots are at the top.
 ![Das Wahre Schlagerfest v.](Screenshots/DasWahreSchlagerfest_2_0.png)
 
 ![Das Wahre Schlagerfest v.](Screenshots/DasWahreSchlagerfest_1_0.png)
+
+## External links
+
+ * [Richel Bilderbeek's games](https://github.com/richelbilderbeek/Games)
