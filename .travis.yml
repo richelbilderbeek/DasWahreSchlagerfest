@@ -22,6 +22,10 @@ install:
   - ./install_oclint
   # Others
   - ./download_other_githubs
+  # Check dead links
+  - sudo apt-get install -qq npm
+  - npm config set strict-ssl false
+  - sudo npm install -g markdown-link-check
 
 services:
  - xvfb
@@ -35,12 +39,15 @@ script:
   - qmake -qt=qt5 DasWahreSchlagerfestConsole.pro
   - make --silent debug
   - qmake -qt=qt5  DasWahreSchlagerfestDesktop.pro
-  - make debug
+  - make --silent debug
   # cppcheck
   - cppcheck --quiet --error-exitcode=1 . 
   # Code coverage
   - ./get_code_cov >/dev/null
   - codecov
+  # Check dead links
+  - rm .travis.yml
+  - ./scripts/check_dead_links
   # OCLint
   - ./do_oclint
 
