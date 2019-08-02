@@ -4,11 +4,6 @@ compiler:
   - gcc
   # - clang 
 
-addons: 
-  apt: 
-    packages: 
-      - libboost-all-dev
-
 install: 
   - sudo apt update -qq
   # Boost
