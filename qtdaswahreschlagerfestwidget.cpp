@@ -57,10 +57,9 @@ const QPixmap& ribi::dws::QtDwsWidget::GetPixmap(const Tile& tile) const noexcep
   {
     case Tile::beer     : return m_beer;
     case Tile::bratwurst: return m_bratwurst;
-    case Tile::empty    : return m_empty;
   }
-  assert(!"Should not get here");
-  throw std::logic_error("ribi::dws::QtDwsWidget::GetPixmap");
+  assert(tile == Tile::empty);
+  return m_empty;
 }
 
 
