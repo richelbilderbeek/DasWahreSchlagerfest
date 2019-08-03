@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define QTDASWAHRESCHLAGERFESTWIDGET_H
 
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
+
 #include <boost/shared_ptr.hpp>
 #include <QImage>
 #include <QWidget>
