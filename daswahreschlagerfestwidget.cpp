@@ -1,4 +1,4 @@
-#pragma GCC diagnostic push
+
 
 
 #include "daswahreschlagerfestwidget.h"
@@ -8,7 +8,7 @@
 #include <numeric>
 
 #include "daswahreschlagerfestdisplay.h"
-#pragma GCC diagnostic pop
+
 
 ribi::dws::Widget::Widget(
   Display * const display,

@@ -1,4 +1,4 @@
-#pragma GCC diagnostic push
+
 
 #include "qtdaswahreschlagerfestmenudialog.h"
 
@@ -18,7 +18,7 @@
 #include "testtimer.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
 #include "trace.h"
-#pragma GCC diagnostic pop
+
 
 QKeyEvent CreateDown() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Down,Qt::NoModifier); }
 QKeyEvent CreateUp() noexcept { return QKeyEvent(QEvent::KeyPress,Qt::Key_Up,Qt::NoModifier); }

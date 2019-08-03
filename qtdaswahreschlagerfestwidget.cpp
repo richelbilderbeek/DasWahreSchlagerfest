@@ -1,4 +1,4 @@
-#pragma GCC diagnostic push
+
 
 #include "qtdaswahreschlagerfestwidget.h"
 
@@ -16,7 +16,7 @@
 #include "qtgraphics.h"
 #include "testtimer.h"
 #include "trace.h"
-#pragma GCC diagnostic pop
+
 
 ribi::dws::QtDwsWidget::QtDwsWidget(QWidget *parent) noexcept
   : QWidget(parent),
