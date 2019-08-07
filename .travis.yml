@@ -45,7 +45,7 @@ script:
   - codecov
   # Check dead links
   - rm .travis.yml
-  - ./scripts/check_dead_links
+  - ./scripts/check_dead_links || true
   # OCLint
   - ./do_oclint
 
