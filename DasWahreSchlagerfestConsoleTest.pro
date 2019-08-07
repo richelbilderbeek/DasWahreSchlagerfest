@@ -10,7 +10,7 @@ include(DasWahreSchlagerfestConsoleTest.pri)
 
 SOURCES += main_test.cpp
 
-# C++17
+
 CONFIG += c++17
 QMAKE_CXXFLAGS += -std=c++17
 
