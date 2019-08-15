@@ -42,7 +42,7 @@ script:
   - cppcheck --quiet --error-exitcode=1 . 
   # Code coverage
   - ./get_code_cov >/dev/null
-  - codecov
+  - codecov >/dev/null
   # Check dead links
   - rm .travis.yml
   - ./scripts/check_dead_links || true
